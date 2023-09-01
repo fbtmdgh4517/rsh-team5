@@ -33,10 +33,10 @@ public class UserInfoController {
 	@Autowired
 	private JWTToken jwtToken;
 	
-	@GetMapping("/valid")
-	public UserInfoVO valid(@RequestParam("token") String token) {
-		return jwtToken.validToken(token);
-	}
+//	@GetMapping("/valid")
+//	public UserInfoVO valid(@RequestParam("token") String token) {
+//		return jwtToken.validToken(token);
+//	}
 	
 	@GetMapping("/expire")
 	public Long getExpire() {

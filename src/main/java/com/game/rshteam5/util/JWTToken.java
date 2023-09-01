@@ -55,7 +55,7 @@ public class JWTToken {
 		return token;
 	}
 	
-	public UserInfoVO validToken(String token) {
+	public UserInfoVO getUserIdFromToken(String token) {
 		Key key = Keys.hmacShaKeyFor(JWT_TOKEN_KEY.getBytes());
 		try {
 			String userId = Jwts.parserBuilder()
