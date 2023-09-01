@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.game.rshteam5.mapper.UserInfoMapper">
+	<select id="selectUserInfos" resultType="com.game.rshteam5.vo.UserInfoVO">
+		SELECT UI_NUM, UI_NAME, UI_ID, UI_PWD FROM USER_INFO
+		<where>
+			<if test='uiName != null and uiName != ""'>
+				AND UI_NAME LIKE CONCAT('%', #{uiName}, '%')
+			</if>
+			<if test='uiNum != 0'>
+				AND UI_NUM = #{uiNum}
+			</if>
+		</where>
+	</select>
+	<select id="selectUserInfo" resultType="com.game.rshteam5.vo.UserInfoVO">
+		SELECT UI_NUM, UI_NAME, UI_ID, UI_PWD FROM USER_INFO
+		WHERE UI_NUM=#{uiNum}
+	</select>
+	<insert id="insertUserInfo">
+		INSERT INTO user_info(UI_NAME, UI_ID, UI_PWD) 
+		VALUES(#{uiName}, #{uiId}, #{uiPwd})
+	</insert>
+	<update id="updateUserInfo">
+		UPDATE user_info
+		SET UI_NAME=#{uiName},
+		UI_PWD=#{uiPwd}
+		WHERE UI_NUM=#{uiNum}
+	</update>
+	<delete id="deleteUserInfo">
+		DELETE FROM user_info WHERE UI_NUM=#{uiNum}
+	</delete>
+	<select id="selectByIdAndPwd" resultType="com.game.rshteam5.vo.UserInfoVO">
+		SELECT UI_NUM, UI_NAME, UI_ID, UI_PWD FROM USER_INFO
+		WHERE UI_ID=#{uiId} AND UI_PWD=#{uiPwd}
+	</select>
+</mapper>
